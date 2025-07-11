@@ -11,11 +11,14 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -27,7 +30,13 @@ public:
     QLabel *label;
     QPushButton *continueButton;
     QWidget *adminPanel;
+    QHBoxLayout *horizontalLayout;
+    QPushButton *btnAdd;
+    QPushButton *btnEdit;
+    QPushButton *btnDelete;
     QWidget *customerPanel;
+    QTableWidget *tableVehicle;
+    QLabel *label_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -40,16 +49,39 @@ public:
         centralwidget->setObjectName("centralwidget");
         label = new QLabel(centralwidget);
         label->setObjectName("label");
-        label->setGeometry(QRect(290, 80, 157, 56));
+        label->setGeometry(QRect(290, 80, 200, 56));
         continueButton = new QPushButton(centralwidget);
         continueButton->setObjectName("continueButton");
-        continueButton->setGeometry(QRect(290, 280, 157, 29));
+        continueButton->setGeometry(QRect(290, 280, 200, 30));
         adminPanel = new QWidget(centralwidget);
         adminPanel->setObjectName("adminPanel");
-        adminPanel->setGeometry(QRect(60, 280, 120, 80));
+        adminPanel->setGeometry(QRect(50, 350, 700, 200));
+        horizontalLayout = new QHBoxLayout(adminPanel);
+        horizontalLayout->setObjectName("horizontalLayout");
+        btnAdd = new QPushButton(adminPanel);
+        btnAdd->setObjectName("btnAdd");
+
+        horizontalLayout->addWidget(btnAdd);
+
+        btnEdit = new QPushButton(adminPanel);
+        btnEdit->setObjectName("btnEdit");
+
+        horizontalLayout->addWidget(btnEdit);
+
+        btnDelete = new QPushButton(adminPanel);
+        btnDelete->setObjectName("btnDelete");
+
+        horizontalLayout->addWidget(btnDelete);
+
         customerPanel = new QWidget(centralwidget);
         customerPanel->setObjectName("customerPanel");
         customerPanel->setGeometry(QRect(60, 140, 120, 80));
+        tableVehicle = new QTableWidget(centralwidget);
+        tableVehicle->setObjectName("tableVehicle");
+        tableVehicle->setGeometry(QRect(180, 150, 431, 221));
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName("label_2");
+        label_2->setGeometry(QRect(350, 100, 111, 31));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -69,6 +101,10 @@ public:
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Vehicle Rental System", nullptr));
         continueButton->setText(QCoreApplication::translate("MainWindow", "Click here to Continue.", nullptr));
+        btnAdd->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
+        btnEdit->setText(QCoreApplication::translate("MainWindow", "Edit", nullptr));
+        btnDelete->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "ADMIN PANEL!!!", nullptr));
     } // retranslateUi
 
 };

@@ -43,6 +43,9 @@ void Register::on_submit_clicked()
         QMessageBox::warning(this, "Error", "Username already exists.");
         return;
     }
+
+
+
 QString role = ui->comboBox->currentText();
     // Insert new user
     QSqlQuery insertQuery;
@@ -58,7 +61,5 @@ QString role = ui->comboBox->currentText();
 
     QMessageBox::information(this, "Success", "Registered successfully!");
 
-    login *loginWindow = new login();
-    loginWindow->show();
-    this->close();
+    accept();
 }

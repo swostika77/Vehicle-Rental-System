@@ -15,19 +15,23 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget  *parent=nullptr);
-    explicit MainWindow(const QString &role, QWidget *parent=nullptr);
-
+    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(const QString &role, QWidget *parent = nullptr);
     ~MainWindow();
+
     void setUserRole(const QString &role);
 
 private slots:
     void on_continueButton_clicked();
+    void on_btnAdd_clicked();
+    void on_btnEdit_clicked();
+    void on_btnDelete_clicked();
 
 private:
     Ui::MainWindow *ui;
     QString userRole;
 
+    void loadVehicleData();
 };
 
 #endif // MAINWINDOW_H

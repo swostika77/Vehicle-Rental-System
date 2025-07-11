@@ -41,21 +41,18 @@ void login::on_Login_clicked()
     }
 
     if (query.next()) {
-        // Successful login
-        QString role = query.value(0).toString();
-        QMessageBox::information(this, "Login", "Login Successful! Role: " + role);
-
-        MainWindow *main = new MainWindow();
-        main->setUserRole(role);
-        main->show();
-        this->close();
+        loggedInRole = query.value(0).toString();  // ✅ Store the role
+        QMessageBox::information(this, "Login", "Login Successful! Role: " + loggedInRole);
+        accept();  //
     }
     else {
         QMessageBox::warning(this, "Login Failed", "Invalid username or password.");
     }
 }
 
-
+QString login::getUserRole() const {
+    return loggedInRole;
+}
 
 void login::on_Submit_clicked()
 {
@@ -66,33 +63,9 @@ void login::on_Submit_clicked()
 
 void login::on_Signup_clicked()
 {
-    Register *regWindow=new Register();
-    regWindow->show();
-    this->close();
+    Register regWindow;
+    if (regWindow.exec() == QDialog::Accepted) {
+        QMessageBox::information(this, "Success", "Registered! Now you can log in.");
 }
-
-
-/*void login::on_Login_clicked()
-{
-    QString username = ui->Login->text();
-    QString password = ui->Signup->text();
-
-    QSqlQuery query;
-    query.prepare("SELECT role FROM Users WHERE username=? AND password=?");
-    query.addBindValue(username);
-    query.addBindValue(password);
-
-    if (query.exec() && query.next()) {
-        QString role = query.value(0).toString();
-        QMessageBox::information(this, "Login", "Login Successful! Role: " + role);
-
-        MainWindow *main = new MainWindow(role);
-        main->show();
-        this->close();
-    } else {
-        QMessageBox::warning(this, "Login Failed", "Invalid username or password.");
-    }
 }
-
-*/
 
