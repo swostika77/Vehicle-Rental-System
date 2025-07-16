@@ -19,116 +19,246 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>30</y>
-     <width>191</width>
+     <x>550</x>
+     <y>50</y>
+     <width>131</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+font-family: Arial;
+font-size: 14pt;
+font-weight: bold;
+color: Black;
+</string>
    </property>
    <property name="text">
-    <string>Sign up!</string>
+    <string>Sign up</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>120</y>
-     <width>81</width>
-     <height>31</height>
+     <x>300</x>
+     <y>130</y>
+     <width>651</width>
+     <height>291</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Username:</string>
+   <property name="styleSheet">
+    <string notr="true">QFrame{
+ background-color: #f9f9f9;         
+    border: 1px solid #ccc;            
+    border-radius: 10px;    
+}
+</string>
    </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>180</y>
-     <width>71</width>
-     <height>21</height>
-    </rect>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
    </property>
-   <property name="text">
-    <string>Password:</string>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
    </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>240</y>
-     <width>62</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Role:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="Susername">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>120</y>
-     <width>481</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="Spassword">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>180</y>
-     <width>481</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="echoMode">
-    <enum>QLineEdit::EchoMode::Password</enum>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>240</y>
-     <width>221</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <item>
-    <property name="text">
-     <string>Select</string>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>30</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
     </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Admin</string>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    font-size: 15px;
+    color: black;
+font-weight=bold;
+border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    padding: 6px 10px;
+}
+</string>
     </property>
-   </item>
-   <item>
     <property name="text">
-     <string>Customer</string>
+     <string>Username:</string>
     </property>
-   </item>
+   </widget>
+   <widget class="QLineEdit" name="Susername">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>30</y>
+      <width>481</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    padding: 6px 10px;
+    font-size: 14px;
+    background-color: #ecf0f1;
+}
+
+QLineEdit:focus {
+    border: 1px solid #3498db;
+    background-color: #ffffff;
+}</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="Spassword">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>80</y>
+      <width>481</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    padding: 6px 10px;
+    font-size: 14px;
+    background-color: #ecf0f1;
+}
+
+QLineEdit:focus {
+    border: 1px solid #3498db;
+    background-color: #ffffff;
+}</string>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::EchoMode::Password</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>80</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    font-size: 15px;
+    color: black;
+font-weight=bold;
+border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    padding: 6px 10px;
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>Password:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>140</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox {
+    background-color: #f5f7f7;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    padding: 6px;
+    font-size: 14px;
+    color: #333;
+}
+
+QComboBox:hover {
+    border: 1px solid #aaa;
+}
+
+/* Drop-down popup */
+QComboBox QAbstractItemView {
+    background: #ffffff;
+    border: 1px solid #ccc;
+    selection-background-color: #e6e6e6;
+}
+
+
+QPushButton#signupButton {
+    background-color: #f9f9f9;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 14px;
+}</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>Select</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Admin</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Customer</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>140</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    font-size: 15px;
+    color: black;
+font-weight=bold;
+border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    padding: 6px 10px;
+}
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>Role:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="submit">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>210</y>
+      <width>93</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sign up</string>
+    </property>
+   </widget>
   </widget>
-  <widget class="QPushButton" name="submit">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>310</y>
-     <width>93</width>
-     <height>29</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Submit</string>
-   </property>
-  </widget>
+  <zorder>frame</zorder>
+  <zorder>label</zorder>
+  <zorder></zorder>
  </widget>
  <resources/>
  <connections/>

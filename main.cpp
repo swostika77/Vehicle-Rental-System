@@ -5,6 +5,7 @@
 #include <QApplication>
 #include <QSqlQuery>
 #include "login.h"
+#include "front.h"
 
 int main(int argc, char *argv[])
 {
@@ -36,13 +37,20 @@ int main(int argc, char *argv[])
         "model TEXT)");
 
 
+    Front front;//cresting object front
+    if(front.exec()==QDialog::Accepted){
+
+
     login loginWindow;
     if (loginWindow.exec() == QDialog::Accepted) {
+
         QString role = loginWindow.getUserRole();
         MainWindow main(role);  // pass the role
         main.show();
         return a.exec();        // Start main window only after login
     }
+    }
 
     return 0; // if login canceled
 }
+
