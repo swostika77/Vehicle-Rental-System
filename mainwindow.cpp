@@ -48,29 +48,40 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::setUserRole(const QString &role) {
-    userRole = role;
+    QString normalizedRole = role.trimmed().toLower();
+    userRole = normalizedRole;
 
     // Hide welcome screen
     ui->label->setVisible(false);
     ui->continueButton->setVisible(false);
 
     // Show panel based on role
-    if (userRole == "Admin") {
+    if (userRole == "admin") {
         ui->adminPanel->setVisible(true);
         ui->customerPanel->setVisible(false);
-    } else if (userRole == "Customer") {
+    } else if (userRole == "customer") {
         ui->adminPanel->setVisible(false);
         ui->customerPanel->setVisible(true);
+    }
+    else{
+        ui->adminPanel->setVisible(false);
+        ui->customerPanel->setVisible(false);
     }
 }
 
 void MainWindow::loadVehicleData() {
-    ui->tableVehicle->setRowCount(0);  // Clear previous rows
-    ui->tableVehicle->insertRow(0);
-    ui->tableVehicle->setItem(0, 0, new QTableWidgetItem("v001"));
-    ui->tableVehicle->setItem(0, 1, new QTableWidgetItem("Car"));
-    ui->tableVehicle->setItem(0, 2, new QTableWidgetItem("Toyota"));
-    ui->tableVehicle->setItem(0, 3, new QTableWidgetItem("Corolla"));
+    ui->tableVehicle->setRowCount(0);
+    QSqlQuery query("SELECT id, type, brand, model FROM Vehicles");
+
+    int row = 0;
+    while (query.next()) {
+        ui->tableVehicle->insertRow(row);
+        ui->tableVehicle->setItem(row, 0, new QTableWidgetItem(query.value(0).toString()));
+        ui->tableVehicle->setItem(row, 1, new QTableWidgetItem(query.value(1).toString()));
+        ui->tableVehicle->setItem(row, 2, new QTableWidgetItem(query.value(2).toString()));
+        ui->tableVehicle->setItem(row, 3, new QTableWidgetItem(query.value(3).toString()));
+        row++;
+    }
 }
 
 void MainWindow::on_continueButton_clicked()
@@ -88,18 +99,33 @@ void MainWindow::on_continueButton_clicked()
 }
 
 void MainWindow::on_btnAdd_clicked() {
-    int row = ui->tableVehicle->rowCount();
-    ui->tableVehicle->insertRow(row);
-
     QString id = QInputDialog::getText(this, "Vehicle ID", "Enter ID:");
-    QString type = QInputDialog::getText(this, "Vehicle Type", "Enter Type:");
-    QString brand = QInputDialog::getText(this, "Brand", "Enter Brand:");
-    QString model = QInputDialog::getText(this, "Model", "Enter Model:");
+    if (id.isEmpty()) return;
 
-    ui->tableVehicle->setItem(row, 0, new QTableWidgetItem(id));
-    ui->tableVehicle->setItem(row, 1, new QTableWidgetItem(type));
-    ui->tableVehicle->setItem(row, 2, new QTableWidgetItem(brand));
-    ui->tableVehicle->setItem(row, 3, new QTableWidgetItem(model));
+    QString type = QInputDialog::getText(this, "Vehicle Type", "Enter Type:");
+    if (type.isEmpty()) return;
+
+    QString brand = QInputDialog::getText(this, "Brand", "Enter Brand:");
+    if (brand.isEmpty()) return;
+
+    QString model = QInputDialog::getText(this, "Model", "Enter Model:");
+    if (model.isEmpty()) return;
+
+    // ✅ Insert into database
+    QSqlQuery query;
+    query.prepare("INSERT INTO Vehicles (id, type, brand, model) VALUES (?, ?, ?, ?)");
+    query.addBindValue(id);
+    query.addBindValue(type);
+    query.addBindValue(brand);
+    query.addBindValue(model);
+
+    if (!query.exec()) {
+        QMessageBox::critical(this, "Error", "Failed to add vehicle: " + query.lastError().text());
+        return;
+    }
+
+    QMessageBox::information(this, "Success", "Vehicle added successfully!");
+    loadVehicleData();  // ✅ Refresh Admin panel table
 }
 
 
@@ -145,13 +171,30 @@ void MainWindow::on_btnEdit_clicked() {
 }
 
 void MainWindow::on_btnDelete_clicked() {
-    // You can later add logic to delete selected row
-    int currentRow = ui->tableVehicle->currentRow();
-    if (currentRow >= 0) {
-        ui->tableVehicle->removeRow(currentRow);
-        QMessageBox::information(this, "Deleted", "Vehicle deleted successfully.");
-    } else {
-        QMessageBox::warning(this, "Delete", "No row selected to delete.");
+    int row = ui->tableVehicle->currentRow();
+    if (row < 0) {
+        QMessageBox::warning(this, "Delete Vehicle", "Please select a vehicle to delete.");
+        return;
     }
+
+    QString id = ui->tableVehicle->item(row, 0)->text();
+
+    // Confirm deletion
+    if (QMessageBox::question(this, "Confirm Delete", "Are you sure you want to delete vehicle " + id + "?")
+        == QMessageBox::No) return;
+
+    // Delete from DB
+    QSqlQuery query;
+    query.prepare("DELETE FROM Vehicles WHERE id = ?");
+    query.addBindValue(id);
+
+    if (!query.exec()) {
+        QMessageBox::critical(this, "Error", "Failed to delete vehicle: " + query.lastError().text());
+        return;
+    }
+
+    QMessageBox::information(this, "Deleted", "Vehicle deleted successfully!");
+
+    loadVehicleData();  // Refresh table
 }
 

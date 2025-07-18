@@ -9,6 +9,8 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    bookvehicle.cpp \
+    customer.cpp \
     front.cpp \
     login.cpp \
     main.cpp \
@@ -16,12 +18,16 @@ SOURCES += \
     register.cpp
 
 HEADERS += \
+    bookvehicle.h \
+    customer.h \
     front.h \
     login.h \
     mainwindow.h \
     register.h \
 
 FORMS += \
+    bookvehicle.ui \
+    customer.ui \
     front.ui \
     login.ui \
     mainwindow.ui \

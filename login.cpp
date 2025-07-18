@@ -41,7 +41,9 @@ void login::on_Login_clicked()
     }
 
     if (query.next()) {
-        loggedInRole = query.value(0).toString();  // ✅ Store the role
+        loggedInRole = query.value(0).toString().trimmed();
+        qDebug() << "Logged in role from DB:" << loggedInRole;
+
         QMessageBox::information(this, "Login", "Login Successful! Role: " + loggedInRole);
         accept();  //
     }
@@ -52,6 +54,11 @@ void login::on_Login_clicked()
 
 QString login::getUserRole() const {
     return loggedInRole;
+}
+
+
+QString login::getUsername() const {
+    return loggedUser;
 }
 
 void login::on_Submit_clicked()

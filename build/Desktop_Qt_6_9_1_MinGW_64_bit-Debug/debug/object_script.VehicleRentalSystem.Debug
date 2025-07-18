@@ -1,9 +1,13 @@
+debug/bookvehicle.o
+debug/customer.o
 debug/front.o
 debug/login.o
 debug/main.o
 debug/mainwindow.o
 debug/register.o
 debug/qrc_resource.o
+debug/moc_bookvehicle.o
+debug/moc_customer.o
 debug/moc_front.o
 debug/moc_login.o
 debug/moc_mainwindow.o

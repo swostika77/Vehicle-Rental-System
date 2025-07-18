@@ -15,6 +15,7 @@ public:
     explicit login(QWidget *parent = nullptr);
     ~login();
 QString getUserRole() const;
+    QString getUsername() const;
 
 private slots:
     void on_Login_clicked();
@@ -28,6 +29,7 @@ private slots:
 private:
     Ui::login *ui;
         QString loggedInRole;
+    QString loggedUser;
 };
 
 #endif // LOGIN_H

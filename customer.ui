@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Customer</class>
+ <widget class="QDialog" name="Customer">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1450</width>
+    <height>677</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPushButton" name="btnBook">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>210</y>
+     <width>171</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Book Vehicle</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnHistory">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>370</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>View booking History</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnReturn">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>530</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Return Vehicle</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>70</y>
+     <width>151</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+font-family: Arial;
+font-size: 14pt;
+font-weight: bold;
+color: Black;
+</string>
+   </property>
+   <property name="text">
+    <string>WELCOME!!!</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <QSqlQuery>
 #include <QSqlError>
+#include<QDebug>
 
 Register::Register(QWidget *parent)
     : QDialog(parent)
@@ -46,8 +47,13 @@ void Register::on_submit_clicked()
 
 
 
-QString role = ui->comboBox->currentText();
-    // Insert new user
+QString role = ui->comboBox->currentText().trimmed();
+    if (role.compare("Customer", Qt::CaseInsensitive) == 0)
+        role = "Customer";
+    else
+        role = "Admin";
+
+// Insert new user
     QSqlQuery insertQuery;
     insertQuery.prepare("INSERT INTO Users (username, password, role) VALUES (?, ?, ?)");
     insertQuery.addBindValue(username);
