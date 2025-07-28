@@ -34,6 +34,7 @@ public:
     QPushButton *btnAdd;
     QPushButton *btnEdit;
     QPushButton *btnDelete;
+    QPushButton *cancel;
     QWidget *customerPanel;
     QTableWidget *tableVehicle;
     QLabel *label_2;
@@ -73,6 +74,11 @@ public:
 
         horizontalLayout->addWidget(btnDelete);
 
+        cancel = new QPushButton(adminPanel);
+        cancel->setObjectName("cancel");
+
+        horizontalLayout->addWidget(cancel);
+
         customerPanel = new QWidget(centralwidget);
         customerPanel->setObjectName("customerPanel");
         customerPanel->setGeometry(QRect(60, 140, 120, 80));
@@ -104,6 +110,7 @@ public:
         btnAdd->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
         btnEdit->setText(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         btnDelete->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
+        cancel->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "ADMIN PANEL!!!", nullptr));
     } // retranslateUi
 

@@ -30,9 +30,14 @@ void bookvehicle::loadAvailableVehicles() {
     ui->tableVehicle->setRowCount(0);
 
     QSqlQuery query;
+    // Only show vehicles NOT currently booked
     if (!query.exec(
             "SELECT v.id, v.type, v.brand, v.model "
-            "FROM Vehicles v " )) {
+            "FROM Vehicles v "
+            "WHERE v.id NOT IN ( "
+            "   SELECT vehicle_id FROM Bookings WHERE status = 'Booked' "
+            ")"
+            ))  {
         QMessageBox::critical(this, "DB Error", query.lastError().text());
         return;
     }
@@ -47,7 +52,7 @@ void bookvehicle::loadAvailableVehicles() {
         row++;
     }
 
-    // ✅ If no available vehicles
+    //  If no available vehicles
     if (row == 0) {
         QMessageBox::information(this, "No Vehicles", "No available vehicles right now.");
     }
@@ -56,11 +61,11 @@ void bookvehicle::loadAvailableVehicles() {
 double getRatebyType(const QString &type){
     QString lowerType=type.trimmed().toLower();
     if(lowerType=="car")
-        return 50;
+        return 700;
     if(lowerType=="bike")
-        return 20;
-    if(lowerType=="van")return 40;
-    return 30;
+        return 500;
+    if(lowerType=="van")return 800;
+    return 400;
 
 }
 void bookvehicle::on_btnBook_clicked() {
@@ -84,7 +89,7 @@ void bookvehicle::on_btnBook_clicked() {
     double totalPrice=days*dailyRate;
 
     QString confirmMsg = QString(
-                             "Vehicle: %1\nType: %2\nDays: %3\nRate: $%4/day\n\nTotal Price: $%5\n\nConfirm booking?"
+                             "Vehicle: %1\nType: %2\nDays: %3\nRate: Rs%4/day\n\nTotal Price: Rs%5\n\nConfirm booking?"
                              ).arg(vehicleId)
                              .arg(vehicleType)
                              .arg(days)

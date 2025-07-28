@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>img/cars.png</file>
         <file>img/login.qrc</file>
+        <file>img/Rent.jpg</file>
     </qresource>
 </RCC>

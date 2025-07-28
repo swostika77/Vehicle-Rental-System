@@ -16,20 +16,20 @@
   <widget class="QTableWidget" name="tableVehicle">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>100</y>
-     <width>551</width>
-     <height>401</height>
+     <x>430</x>
+     <y>140</y>
+     <width>501</width>
+     <height>301</height>
     </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="btnBook">
    <property name="geometry">
     <rect>
-     <x>670</x>
-     <y>530</y>
-     <width>93</width>
-     <height>29</height>
+     <x>640</x>
+     <y>480</y>
+     <width>101</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
@@ -39,11 +39,22 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>620</x>
-     <y>30</y>
-     <width>201</width>
-     <height>41</height>
+     <x>460</x>
+     <y>20</y>
+     <width>461</width>
+     <height>61</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel#label {
+    color: #0abde3;
+    font-size: 34px;
+    font-weight: 700;
+    font-family: &quot;Orbitron&quot;, &quot;Segoe UI&quot;, sans-serif;
+    letter-spacing: 2px;
+    qproperty-alignment: AlignCenter;
+}
+</string>
    </property>
    <property name="text">
     <string>Book your Vehicle now!</string>

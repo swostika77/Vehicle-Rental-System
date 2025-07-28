@@ -21,6 +21,8 @@ private slots:
     void on_btnReturn_clicked();
 
 
+    void on_cancel1_clicked();
+
 private:
     Ui::Customer *ui;
     QString loggedUser;

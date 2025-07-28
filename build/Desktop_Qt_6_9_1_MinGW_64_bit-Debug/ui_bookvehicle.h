@@ -33,13 +33,22 @@ public:
         bookvehicle->resize(1456, 608);
         tableVehicle = new QTableWidget(bookvehicle);
         tableVehicle->setObjectName("tableVehicle");
-        tableVehicle->setGeometry(QRect(440, 100, 551, 401));
+        tableVehicle->setGeometry(QRect(430, 140, 501, 301));
         btnBook = new QPushButton(bookvehicle);
         btnBook->setObjectName("btnBook");
-        btnBook->setGeometry(QRect(670, 530, 93, 29));
+        btnBook->setGeometry(QRect(640, 480, 101, 41));
         label = new QLabel(bookvehicle);
         label->setObjectName("label");
-        label->setGeometry(QRect(620, 30, 201, 41));
+        label->setGeometry(QRect(460, 20, 461, 61));
+        label->setStyleSheet(QString::fromUtf8("QLabel#label {\n"
+"    color: #0abde3;\n"
+"    font-size: 34px;\n"
+"    font-weight: 700;\n"
+"    font-family: \"Orbitron\", \"Segoe UI\", sans-serif;\n"
+"    letter-spacing: 2px;\n"
+"    qproperty-alignment: AlignCenter;\n"
+"}\n"
+""));
 
         retranslateUi(bookvehicle);
 

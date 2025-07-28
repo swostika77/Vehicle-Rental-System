@@ -26,6 +26,7 @@ private slots:
     void on_btnAdd_clicked();
     void on_btnEdit_clicked();
     void on_btnDelete_clicked();
+    void on_cancel_clicked();
 
 private:
     Ui::MainWindow *ui;

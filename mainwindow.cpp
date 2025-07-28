@@ -7,6 +7,7 @@
 #include <QSqlQuery>
 #include <QsqlError>
 #include <QSqlDatabase>
+#include "customer.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -197,4 +198,31 @@ void MainWindow::on_btnDelete_clicked() {
 
     loadVehicleData();  // Refresh table
 }
+
+
+void MainWindow::on_cancel_clicked()
+{
+        // Close the current Admin window
+        this->close();
+
+        // Show the login dialog again
+        login loginWindow;
+        if (loginWindow.exec() == QDialog::Accepted) {
+            QString role = loginWindow.getUserRole();
+            QString username = loginWindow.getUsername();
+
+            if (role == "Admin") {
+                // If Admin logs in again, reopen Admin Panel
+                MainWindow adminWin(role);
+                adminWin.show();
+                qApp->exec();  // Start event loop again
+            } else if (role == "Customer") {
+                // If customer logs in, open Customer Panel
+                Customer custWin(username);
+                custWin.exec();
+            }
+        }
+    }
+
+
 

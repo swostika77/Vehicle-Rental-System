@@ -41,6 +41,8 @@ void login::on_Login_clicked()
     }
 
     if (query.next()) {
+        loggedUser = username;
+
         loggedInRole = query.value(0).toString().trimmed();
         qDebug() << "Logged in role from DB:" << loggedInRole;
 

@@ -23,7 +23,7 @@ HEADERS += \
     front.h \
     login.h \
     mainwindow.h \
-    register.h \
+    register.h
 
 FORMS += \
     bookvehicle.ui \
