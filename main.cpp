@@ -40,6 +40,25 @@ void setupDatabase() {
                "duration_days INTEGER,"
                "total_price REAL)");
 
+    query.exec("CREATE TABLE IF NOT EXISTS Feedbacks ("
+               "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+               "username TEXT, "
+               "vehicle_id TEXT, "
+               "feedback_text TEXT, "
+               "rating INTEGER)");
+
+
+
+
+    /*if (query.exec("DELETE FROM Feedbacks")) {
+        qDebug() << "All feedback data deleted successfully.";
+    } else {
+        qDebug() << "Failed to delete feedback data:" << query.lastError().text();
+    }*/
+
+
+
+
     // Sample Vehicles
     QSqlQuery check;
     check.exec("SELECT COUNT(*) FROM Vehicles");

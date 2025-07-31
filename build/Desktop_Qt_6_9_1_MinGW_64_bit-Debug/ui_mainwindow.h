@@ -32,6 +32,7 @@ public:
     QWidget *adminPanel;
     QHBoxLayout *horizontalLayout;
     QPushButton *btnAdd;
+    QPushButton *ViewFeedback;
     QPushButton *btnEdit;
     QPushButton *btnDelete;
     QPushButton *cancel;
@@ -56,13 +57,18 @@ public:
         continueButton->setGeometry(QRect(290, 280, 200, 30));
         adminPanel = new QWidget(centralwidget);
         adminPanel->setObjectName("adminPanel");
-        adminPanel->setGeometry(QRect(50, 350, 700, 200));
+        adminPanel->setGeometry(QRect(60, 380, 700, 200));
         horizontalLayout = new QHBoxLayout(adminPanel);
         horizontalLayout->setObjectName("horizontalLayout");
         btnAdd = new QPushButton(adminPanel);
         btnAdd->setObjectName("btnAdd");
 
         horizontalLayout->addWidget(btnAdd);
+
+        ViewFeedback = new QPushButton(adminPanel);
+        ViewFeedback->setObjectName("ViewFeedback");
+
+        horizontalLayout->addWidget(ViewFeedback);
 
         btnEdit = new QPushButton(adminPanel);
         btnEdit->setObjectName("btnEdit");
@@ -84,10 +90,58 @@ public:
         customerPanel->setGeometry(QRect(60, 140, 120, 80));
         tableVehicle = new QTableWidget(centralwidget);
         tableVehicle->setObjectName("tableVehicle");
-        tableVehicle->setGeometry(QRect(180, 150, 431, 221));
+        tableVehicle->setGeometry(QRect(100, 160, 601, 251));
+        tableVehicle->setStyleSheet(QString::fromUtf8("QTableWidget {\n"
+"    background-color: #f9f9f9;  /* light neutral background */\n"
+"    color: #222222;             /* dark text */\n"
+"    font-family: Arial, sans-serif;\n"
+"    font-size: 12px;\n"
+"    gridline-color: #cccccc;    /* subtle grid lines */\n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: #e1e1e1;  /* light gray headers */\n"
+"    color: #333333;             /* dark gray text */\n"
+"    padding: 4px;\n"
+"    border: 1px solid #cccccc;\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #a0a0a0;  /* muted gray for selected row */\n"
+"    color: white;\n"
+"}\n"
+"\n"
+"QTableWidget::item:!selected:alternate {\n"
+"    background-color: #f4f4f4; \n"
+"}\n"
+"\n"
+"QTableWidget::item:!selected:!alternate {\n"
+"    background-color: white;\n"
+"}\n"
+"\n"
+"QTableWidget::item {\n"
+"    border: none;\n"
+"    padding: 5px;\n"
+"}\n"
+"\n"
+"\n"
+"QHeaderView::section:focus {\n"
+"    outline: none;\n"
+"}\n"
+""));
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(350, 100, 111, 31));
+        label_2->setGeometry(QRect(220, 80, 381, 41));
+        label_2->setStyleSheet(QString::fromUtf8("QLabel#label_2{\n"
+"    color:  #777777; \n"
+"    font-size: 34px;\n"
+"    font-weight: 700;\n"
+"    font-family: \"Orbitron\", \"Segoe UI\", sans-serif;\n"
+"    letter-spacing: 2px;\n"
+"    qproperty-alignment: AlignCenter;\n"
+"}\n"
+""));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -108,6 +162,7 @@ public:
         label->setText(QCoreApplication::translate("MainWindow", "Vehicle Rental System", nullptr));
         continueButton->setText(QCoreApplication::translate("MainWindow", "Click here to Continue.", nullptr));
         btnAdd->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
+        ViewFeedback->setText(QCoreApplication::translate("MainWindow", "View Feedback", nullptr));
         btnEdit->setText(QCoreApplication::translate("MainWindow", "Edit", nullptr));
         btnDelete->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
         cancel->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));

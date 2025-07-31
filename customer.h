@@ -23,6 +23,7 @@ private slots:
 
     void on_cancel1_clicked();
 
+
 private:
     Ui::Customer *ui;
     QString loggedUser;

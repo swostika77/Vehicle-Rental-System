@@ -17,6 +17,8 @@ bookvehicle::bookvehicle(const QString &username, QWidget *parent)
     ui->tableVehicle->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     loadAvailableVehicles();
+    ui->tableVehicle->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
 
 }
 

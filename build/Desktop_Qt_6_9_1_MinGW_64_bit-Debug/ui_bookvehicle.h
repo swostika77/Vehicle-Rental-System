@@ -30,19 +30,58 @@ public:
     {
         if (bookvehicle->objectName().isEmpty())
             bookvehicle->setObjectName("bookvehicle");
-        bookvehicle->resize(1456, 608);
+        bookvehicle->resize(1479, 563);
         tableVehicle = new QTableWidget(bookvehicle);
         tableVehicle->setObjectName("tableVehicle");
-        tableVehicle->setGeometry(QRect(430, 140, 501, 301));
+        tableVehicle->setGeometry(QRect(270, 90, 921, 391));
+        tableVehicle->setStyleSheet(QString::fromUtf8("QTableWidget {\n"
+"    background-color: #ffffff;\n"
+"    alternate-background-color: #f5f9f5;\n"
+"    gridline-color: #e0e0e0;\n"
+"    font-size: 14px;\n"
+"    border: 1px solid #cccccc;\n"
+"}\n"
+"\n"
+"QTableWidget::item {\n"
+"    padding: 6px;\n"
+"    color: #2d2d2d;\n"
+"}\n"
+"\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #c8f7c5;\n"
+"    color: #1b4d3e;\n"
+"}\n"
+"QHeaderView::section {\n"
+"    background-color:  #a8d5ba;\n"
+"    color: white;\n"
+"    font-weight: bold;\n"
+"    border: 1px solid #51708a ;\n"
+"    padding: 5px;\n"
+"}\n"
+"\n"
+"QScrollBar:vertical {\n"
+"    background: #f0f0f0;\n"
+"    width: 10px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical {\n"
+"    background: #f5b041;\n"
+"    min-height: 20px;\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {\n"
+"    height: 0px;\n"
+"}\n"
+""));
         btnBook = new QPushButton(bookvehicle);
         btnBook->setObjectName("btnBook");
-        btnBook->setGeometry(QRect(640, 480, 101, 41));
+        btnBook->setGeometry(QRect(690, 500, 101, 41));
         label = new QLabel(bookvehicle);
         label->setObjectName("label");
-        label->setGeometry(QRect(460, 20, 461, 61));
+        label->setGeometry(QRect(530, 0, 461, 61));
         label->setStyleSheet(QString::fromUtf8("QLabel#label {\n"
-"    color: #0abde3;\n"
-"    font-size: 34px;\n"
+"    color:  #777777; \n"
+"    font-size: 38px;\n"
 "    font-weight: 700;\n"
 "    font-family: \"Orbitron\", \"Segoe UI\", sans-serif;\n"
 "    letter-spacing: 2px;\n"

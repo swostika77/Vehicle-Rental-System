@@ -20,6 +20,8 @@ private slots:
     void on_btnBook_clicked();
 
 
+    void on_tableVehicle_cellActivated(int row, int column);
+
 private:
     void loadAvailableVehicles();
     Ui::bookvehicle *ui;

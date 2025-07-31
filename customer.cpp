@@ -7,6 +7,9 @@
 #include<QSqlError>
 #include<mainwindow.h>
 #include<login.h>
+#include "historydialog.h"
+#include"feedback.h"
+
     Customer::Customer(const QString &username, QWidget *parent)
     : QDialog(parent),
     ui(new Ui::Customer),
@@ -29,7 +32,12 @@ void Customer::on_btnBook_clicked()
 // SLOT: View History
 void Customer::on_btnHistory_clicked() {
     QMessageBox::information(this, "Booking History", "Here you can view your booking history!");
+
+    HistoryDialog dialog(loggedUser, this);
+    dialog.exec();  // Show as modal window
 }
+
+
 
 // SLOT: Return Vehicle
 void Customer::on_btnReturn_clicked() {
@@ -53,8 +61,12 @@ void Customer::on_btnReturn_clicked() {
 
     if (bookedVehicles.isEmpty()) {
         QMessageBox::information(this, "No Booked Vehicles", "You have no booked vehicles to return.");
-        return;
+        return;    
     }
+
+
+
+
 
     // Let user pick which vehicle to return
     bool ok;
@@ -96,7 +108,15 @@ void Customer::on_btnReturn_clicked() {
     }
 
     QMessageBox::information(this, "Success", "Vehicle returned successfully!\nIt is now available for booking again.");
+
+
+    Feedback feedback(loggedUser, selectedVehicle, this);
+    feedback.exec();
+
 }
+
+
+
 
 
 void Customer::on_cancel1_clicked()

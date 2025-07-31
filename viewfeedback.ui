@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Viewfeedback</class>
+ <widget class="QDialog" name="Viewfeedback">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>751</width>
+    <height>544</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QTableWidget" name="tableFeedback">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>130</y>
+     <width>491</width>
+     <height>321</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableWidget {
+    background-color: #f9f9f9;  /* light neutral background */
+    color: #222222;             /* dark text */
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    gridline-color: #cccccc;    /* subtle grid lines */
+}
+
+QHeaderView::section {
+    background-color: #e1e1e1;  /* light gray headers */
+    color: #333333;             /* dark gray text */
+    padding: 4px;
+    border: 1px solid #cccccc;
+    font-weight: bold;
+}
+
+QTableWidget::item:selected {
+    background-color: #a0a0a0;  /* muted gray for selected row */
+    color: white;
+}
+
+QTableWidget::item:!selected:alternate {
+    background-color: #f4f4f4;  /* alternate row coloring */
+}
+
+QTableWidget::item:!selected:!alternate {
+    background-color: white;
+}
+
+QTableWidget::item {
+    border: none;
+    padding: 5px;
+}
+
+/* Remove focus border on header */
+QHeaderView::section:focus {
+    outline: none;
+}
+</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>30</y>
+     <width>471</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel#label {
+    color:  #777777; 
+    font-size: 30px;
+    font-weight: 700;
+    font-family: &quot;Orbitron&quot;, &quot;Segoe UI&quot;, sans-serif;
+    letter-spacing: 2px;
+    qproperty-alignment: AlignCenter;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>&quot;User Feedback Overview&quot;</string>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1456</width>
-    <height>608</height>
+    <width>1479</width>
+    <height>563</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,18 +16,59 @@
   <widget class="QTableWidget" name="tableVehicle">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>140</y>
-     <width>501</width>
-     <height>301</height>
+     <x>270</x>
+     <y>90</y>
+     <width>921</width>
+     <height>391</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableWidget {
+    background-color: #ffffff;
+    alternate-background-color: #f5f9f5;
+    gridline-color: #e0e0e0;
+    font-size: 14px;
+    border: 1px solid #cccccc;
+}
+
+QTableWidget::item {
+    padding: 6px;
+    color: #2d2d2d;
+}
+
+QTableWidget::item:selected {
+    background-color: #c8f7c5;
+    color: #1b4d3e;
+}
+QHeaderView::section {
+    background-color:  #a8d5ba;
+    color: white;
+    font-weight: bold;
+    border: 1px solid #51708a ;
+    padding: 5px;
+}
+
+QScrollBar:vertical {
+    background: #f0f0f0;
+    width: 10px;
+}
+
+QScrollBar::handle:vertical {
+    background: #f5b041;
+    min-height: 20px;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnBook">
    <property name="geometry">
     <rect>
-     <x>640</x>
-     <y>480</y>
+     <x>690</x>
+     <y>500</y>
      <width>101</width>
      <height>41</height>
     </rect>
@@ -39,16 +80,16 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>20</y>
+     <x>530</x>
+     <y>0</y>
      <width>461</width>
      <height>61</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">QLabel#label {
-    color: #0abde3;
-    font-size: 34px;
+    color:  #777777; 
+    font-size: 38px;
     font-weight: 700;
     font-family: &quot;Orbitron&quot;, &quot;Segoe UI&quot;, sans-serif;
     letter-spacing: 2px;

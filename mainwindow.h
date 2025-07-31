@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QString>
+#include "viewfeedback.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -27,6 +28,10 @@ private slots:
     void on_btnEdit_clicked();
     void on_btnDelete_clicked();
     void on_cancel_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_ViewFeedback_clicked();
 
 private:
     Ui::MainWindow *ui;

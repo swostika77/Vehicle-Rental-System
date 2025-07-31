@@ -8,6 +8,8 @@
 #include <QsqlError>
 #include <QSqlDatabase>
 #include "customer.h"
+#include "viewfeedback.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -16,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     connect(ui->continueButton, &QPushButton::clicked, this, &MainWindow::on_continueButton_clicked);
+      connect(ui->ViewFeedback, &QPushButton::clicked, this, &MainWindow::on_ViewFeedback_clicked);
 
     ui->adminPanel->setVisible(false);
     ui->customerPanel->setVisible(false);
@@ -223,6 +226,18 @@ void MainWindow::on_cancel_clicked()
             }
         }
     }
+
+void MainWindow::on_ViewFeedback_clicked()
+{
+    qDebug() << "View Feedback button clicked!";
+    Viewfeedback *viewer = new Viewfeedback(this);
+    viewer->setAttribute(Qt::WA_DeleteOnClose);
+    viewer->show();
+    qDebug()<<"ViewFeedback dialog shown";
+}
+
+
+
 
 
 

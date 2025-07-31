@@ -11,27 +11,36 @@ CONFIG += c++17
 SOURCES += \
     bookvehicle.cpp \
     customer.cpp \
+    feedback.cpp \
     front.cpp \
+    historydialog.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
-    register.cpp
+    register.cpp \
+    viewfeedback.cpp
 
 HEADERS += \
     bookvehicle.h \
     customer.h \
+    feedback.h \
     front.h \
+    historydialog.h \
     login.h \
     mainwindow.h \
-    register.h
+    register.h \
+    viewfeedback.h
 
 FORMS += \
     bookvehicle.ui \
     customer.ui \
+    feedback.ui \
     front.ui \
+    historydialog.ui \
     login.ui \
     mainwindow.ui \
-    register.ui
+    register.ui \
+    viewfeedback.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

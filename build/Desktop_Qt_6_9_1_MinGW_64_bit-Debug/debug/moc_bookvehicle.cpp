@@ -40,12 +40,19 @@ template <> constexpr inline auto bookvehicle::qt_create_metaobjectdata<qt_meta_
     QtMocHelpers::StringRefStorage qt_stringData {
         "bookvehicle",
         "on_btnBook_clicked",
-        ""
+        "",
+        "on_tableVehicle_cellActivated",
+        "row",
+        "column"
     };
 
     QtMocHelpers::UintData qt_methods {
         // Slot 'on_btnBook_clicked'
         QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_tableVehicle_cellActivated'
+        QtMocHelpers::SlotData<void(int, int)>(3, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 4 }, { QMetaType::Int, 5 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -70,10 +77,10 @@ void bookvehicle::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->on_btnBook_clicked(); break;
+
         default: ;
         }
     }
-    (void)_a;
 }
 
 const QMetaObject *bookvehicle::metaObject() const
@@ -95,14 +102,14 @@ int bookvehicle::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 2;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 2)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 1;
+        _id -= 2;
     }
     return _id;
 }
