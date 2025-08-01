@@ -129,7 +129,7 @@ void MainWindow::on_btnAdd_clicked() {
     }
 
     QMessageBox::information(this, "Success", "Vehicle added successfully!");
-    loadVehicleData();  // ✅ Refresh Admin panel table
+    loadVehicleData();  // Refresh Admin panel table
 }
 
 
