@@ -9,6 +9,7 @@
 #include<login.h>
 #include "historydialog.h"
 #include"feedback.h"
+#include<QDate>
 
     Customer::Customer(const QString &username, QWidget *parent)
     : QDialog(parent),
@@ -64,10 +65,6 @@ void Customer::on_btnReturn_clicked() {
         return;    
     }
 
-
-
-
-
     // Let user pick which vehicle to return
     bool ok;
     QString selectedVehicle = QInputDialog::getItem(
@@ -92,15 +89,110 @@ void Customer::on_btnReturn_clicked() {
 
     if (confirm != QMessageBox::Yes) return;
 
-    // 5️⃣ Update DB → set status = Returned
+  //ask if any damages
+    QMessageBox::StandardButton damageBtn = QMessageBox::question(
+        this,
+        "Damage Check",
+        "Are there any damages to the vehicle?",
+        QMessageBox::Yes | QMessageBox::No
+        );
+
+    int damageFee = 0;
+    QString damageType = "None";
+
+    if (damageBtn == QMessageBox::Yes) {
+        QStringList damageOptions = {
+            "Scratch - Rs. 500",
+            "Broken Light - Rs. 1000",
+            "Major Dent - Rs. 2000",
+            "Other"
+        };
+
+        damageType = QInputDialog::getItem(
+            this,
+            "Select Damage Type",
+            "Choose damage type:",
+            damageOptions,
+            0,
+            false,
+            &ok
+            );
+
+        if (ok && !damageType.isEmpty()) {
+            if (damageType.contains("Scratch")) {
+                damageFee = 500;
+            } else if (damageType.contains("Broken Light")) {
+                damageFee = 1000;
+            } else if (damageType.contains("Major Dent")) {
+                damageFee = 2000;
+            } else if (damageType == "Other") {
+                damageType = QInputDialog::getText(
+                    this,
+                    "Describe Damage",
+                    "Please describe the damage:",
+                    QLineEdit::Normal,
+                    "",
+                    &ok
+                    );
+
+                if (ok && !damageType.isEmpty()) {
+                    bool okFee = false;
+                    damageFee = QInputDialog::getInt(
+                        this,
+                        "Enter Damage Fee",
+                        "Enter the damage fee (Rs):",
+                        0, 0, 10000, 100, &okFee
+                        );
+
+                    if (!okFee) {
+                        damageFee = 0;  // fallback
+                        damageType = "Other";
+                    }
+                }
+            }
+        }
+    }
+
+    // Fetch original booking fee
+    QSqlQuery feeQuery;
+    feeQuery.prepare("SELECT total_price FROM Bookings WHERE username = ? AND vehicle_id = ? AND status = 'Booked'");
+    feeQuery.addBindValue(loggedUser);
+    feeQuery.addBindValue(selectedVehicle);
+
+    int bookingFee = 0;
+
+    if (feeQuery.exec() && feeQuery.next()) {
+        bookingFee = feeQuery.value(0).toInt();
+    }
+
+    int total_price = bookingFee + damageFee;
+
+    QString summary = QString("Original Fee: Rs. %1\nDamage Fee: Rs. %2\n\nTotal Fee: Rs. %3")
+                          .arg(bookingFee)
+                          .arg(damageFee)
+                          .arg(total_price);
+
+    QMessageBox::information(this, "Total Charges", summary);
+
+    // Update booking status to Returned
     QSqlQuery updateQuery;
     updateQuery.prepare(
         "UPDATE Bookings "
-        "SET status = 'Returned' "
+        "SET status = ?, return_date = ?, return_condition = ?, damage_fee = ?, damage_type = ? "
         "WHERE username = ? AND vehicle_id = ? AND status = 'Booked'"
         );
+
+    QString returnDate = QDate::currentDate().toString("yyyy-MM-dd");
+    QString returnCondition = (damageFee > 0) ? "Damaged" : "Good";
+
+    updateQuery.addBindValue("Returned");
+    updateQuery.addBindValue(returnDate);
+    updateQuery.addBindValue(returnCondition);
+    updateQuery.addBindValue(damageFee);
+    updateQuery.addBindValue(damageType);
     updateQuery.addBindValue(loggedUser);
     updateQuery.addBindValue(selectedVehicle);
+
 
     if (!updateQuery.exec()) {
         QMessageBox::critical(this, "Error", "Failed to return vehicle: " + updateQuery.lastError().text());
@@ -108,7 +200,6 @@ void Customer::on_btnReturn_clicked() {
     }
 
     QMessageBox::information(this, "Success", "Vehicle returned successfully!\nIt is now available for booking again.");
-
 
     Feedback feedback(loggedUser, selectedVehicle, this);
     feedback.exec();
@@ -121,23 +212,5 @@ void Customer::on_btnReturn_clicked() {
 
 void Customer::on_cancel1_clicked()
 {
-    this->close();  // Close Customer panel
-
-    // Show the login dialog again
-    login loginWindow;
-    if (loginWindow.exec() == QDialog::Accepted) {
-        QString role = loginWindow.getUserRole();
-        QString username = loginWindow.getUsername();
-
-        if (role == "Admin") {
-            MainWindow adminWin(role);
-            adminWin.show();
-            qApp->exec();  // Restart event loop
-        } else if (role == "Customer") {
-            Customer custWin(username);
-            custWin.exec();
-        }
-    }
+     this->reject();
 }
-
-

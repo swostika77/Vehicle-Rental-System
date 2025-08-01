@@ -31,7 +31,7 @@ public:
         Viewfeedback->resize(751, 544);
         tableFeedback = new QTableWidget(Viewfeedback);
         tableFeedback->setObjectName("tableFeedback");
-        tableFeedback->setGeometry(QRect(120, 130, 491, 321));
+        tableFeedback->setGeometry(QRect(80, 130, 601, 321));
         tableFeedback->setStyleSheet(QString::fromUtf8("QTableWidget {\n"
 "    background-color: #f9f9f9;  /* light neutral background */\n"
 "    color: #222222;             /* dark text */\n"

@@ -100,10 +100,10 @@
    <widget class="QTableWidget" name="tableVehicle">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>160</y>
-      <width>601</width>
-      <height>251</height>
+      <x>60</x>
+      <y>130</y>
+      <width>691</width>
+      <height>321</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -147,12 +147,18 @@ QHeaderView::section:focus {
 }
 </string>
     </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
+    </property>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>80</y>
+      <x>210</x>
+      <y>40</y>
       <width>381</width>
       <height>41</height>
      </rect>

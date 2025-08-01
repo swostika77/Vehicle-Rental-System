@@ -48,7 +48,11 @@ void setupDatabase() {
                "rating INTEGER)");
 
 
+    query.exec("ALTER TABLE Bookings ADD COLUMN return_date TEXT");
+    query.exec("ALTER TABLE Bookings ADD COLUMN return_condition TEXT");
 
+    query.exec("ALTER TABLE Bookings ADD COLUMN damage_fee INTEGER DEFAULT 0");
+    query.exec("ALTER TABLE Bookings ADD COLUMN damage_type TEXT DEFAULT 'None'");
 
     /*if (query.exec("DELETE FROM Feedbacks")) {
         qDebug() << "All feedback data deleted successfully.";
@@ -57,6 +61,15 @@ void setupDatabase() {
     }*/
 
 
+    /*query.prepare("DELETE FROM Bookings WHERE username = :user");
+    query.bindValue(":user", "jk");
+
+    if (query.exec()) {
+        qDebug() << "All feedback entries by user 'iu' deleted.";
+    } else {
+        qDebug() << "Error deleting user feedback:" << query.lastError().text();
+    }
+*/
 
 
     // Sample Vehicles
@@ -70,22 +83,40 @@ int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
     setupDatabase();
+
+    // Show front dialog first (optional)
     Front frontDialog;
-    if (frontDialog.exec() == QDialog::Accepted) {
-    login loginWindow;
-    if (loginWindow.exec() == QDialog::Accepted) {
+    if (frontDialog.exec() != QDialog::Accepted) {
+        return 0;  // user canceled front dialog, exit app
+    }
+
+    while (true) {
+        login loginWindow;
+        if (loginWindow.exec() != QDialog::Accepted) {
+            break;  // User canceled login, exit app
+        }
+
         QString role = loginWindow.getUserRole();
         QString username = loginWindow.getUsername();
 
         if (role == "Admin") {
             MainWindow adminWin(role);
             adminWin.show();
-            return a.exec();
-        } else if (role == "Customer") {
-            Customer custWin(username);
-            custWin.exec();
+            return a.exec();  // Run main event loop with admin main window
         }
-    }
+        else if (role == "Customer") {
+            Customer custWin(username);
+            int result = custWin.exec();  // modal dialog
+
+            if (result == QDialog::Rejected) {
+                // User clicked Cancel in customer panel, go back to login
+                continue;
+            }
+            else {
+                // Customer dialog accepted or closed normally, exit app
+                break;
+            }
+        }
     }
 
     return 0;

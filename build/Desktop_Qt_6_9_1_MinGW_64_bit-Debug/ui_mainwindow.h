@@ -90,7 +90,7 @@ public:
         customerPanel->setGeometry(QRect(60, 140, 120, 80));
         tableVehicle = new QTableWidget(centralwidget);
         tableVehicle->setObjectName("tableVehicle");
-        tableVehicle->setGeometry(QRect(100, 160, 601, 251));
+        tableVehicle->setGeometry(QRect(60, 130, 691, 321));
         tableVehicle->setStyleSheet(QString::fromUtf8("QTableWidget {\n"
 "    background-color: #f9f9f9;  /* light neutral background */\n"
 "    color: #222222;             /* dark text */\n"
@@ -130,9 +130,11 @@ public:
 "    outline: none;\n"
 "}\n"
 ""));
+        tableVehicle->setSizeAdjustPolicy(QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents);
+        tableVehicle->horizontalHeader()->setStretchLastSection(true);
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(220, 80, 381, 41));
+        label_2->setGeometry(QRect(210, 40, 381, 41));
         label_2->setStyleSheet(QString::fromUtf8("QLabel#label_2{\n"
 "    color:  #777777; \n"
 "    font-size: 34px;\n"

@@ -218,7 +218,7 @@ void MainWindow::on_cancel_clicked()
                 // If Admin logs in again, reopen Admin Panel
                 MainWindow adminWin(role);
                 adminWin.show();
-                qApp->exec();  // Start event loop again
+
             } else if (role == "Customer") {
                 // If customer logs in, open Customer Panel
                 Customer custWin(username);

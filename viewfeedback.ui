@@ -16,9 +16,9 @@
   <widget class="QTableWidget" name="tableFeedback">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>80</x>
      <y>130</y>
-     <width>491</width>
+     <width>601</width>
      <height>321</height>
     </rect>
    </property>
